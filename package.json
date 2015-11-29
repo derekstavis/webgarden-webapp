@@ -1,0 +1,19 @@
+{
+  "name": "webgarden-webapp",
+  "version": "0.0.1",
+  "description": "Monitor your garden through the web",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derekstavis/webgarden-webapp.git"
+  },
+  "author": "Derek Stavis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derekstavis/webgarden-webapp/issues"
+  },
+  "homepage": "https://github.com/derekstavis/webgarden-webapp#readme"
+}
