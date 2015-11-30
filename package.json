@@ -4,7 +4,7 @@
   "description": "Monitor your garden through the web",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node_modules/http-server/bin/http-server"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/derekstavis/webgarden-webapp/issues"
   },
-  "homepage": "https://github.com/derekstavis/webgarden-webapp#readme"
+  "homepage": "https://github.com/derekstavis/webgarden-webapp#readme",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-ui-router": "^0.2.15",
+    "ramda": "^0.18.0"
+  },
+  "devDependencies": {
+    "http-server": "^0.8.5"
+  }
 }

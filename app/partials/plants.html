@@ -1,0 +1,11 @@
+<h2>Plant List</h2>
+
+<ul>
+    <li ng-repeat="plant in plants">
+        {{plant.name}}
+    </li>
+    <li>
+        <input ng-model="newPlant.name" type="text" placeholder="Create a plant"/>
+        <button ng-click="createPlant()">Create</button>
+    </li>
+</ul>
