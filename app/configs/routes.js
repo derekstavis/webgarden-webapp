@@ -20,10 +20,10 @@ webgarden.config(function($stateProvider, $urlRouterProvider) {
     .state('user', {
       abstract: true,
       templateUrl: 'partials/user.html',
+      controller: 'UserCtrl',
       resolve: {
         user: resolveUser
-      },
-      controller: 'UserCtrl'
+      }
     })
     .state('user.plants', {
       url: "/plants",
