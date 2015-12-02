@@ -37,6 +37,23 @@ webgarden.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    .state('user.plant', {
+      url: "/plant/:id?{order:[a-z]}&{reverse:bool}",
+      templateUrl: "partials/plant.html",
+      controller: 'PlantCtrl',
+      resolve: {
+        plant: function (server, $http, $state, $stateParams) {
+          return $http.get(server.baseUrl + '/plants/' + $stateParams.id)
+            .then(R.prop('data'))
+            .catch(R.partial($state.go, ['login', undefined, undefined]));
+        },
+        reports: function (server, $http, $state, $stateParams) {
+            return $http.get(server.baseUrl + '/plants/' + $stateParams.id + '/reports')
+            .then(R.prop('data'))
+            .catch(R.partial($state.go, ['login', undefined, undefined]));
+        }
+      }
+    })
     .state('logout', {
       url: "/plants",
       templateUrl: "partials/plants.html",

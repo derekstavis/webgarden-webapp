@@ -1,0 +1,43 @@
+<h2>
+  {{plant.name}} Reports
+  <small>
+    <button ng-click="refresh()" class="btn btn-sm btn-success pull-right">
+      Refresh
+    </button>
+  </small>
+  </h2>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        <a ng-click="order='datetime'; reverse = !reverse">
+          Date/Time
+          <span ng-show="order == 'datetime'">
+            <span ng-show="!reverse">▲</span>
+            <span ng-show="reverse">▼</span>
+          </span>
+        </a>
+      </th>
+      <th>
+        <a ng-click="order='value'; reverse = !reverse">
+          Value
+          <span ng-show="order == 'value'">
+            <span ng-show="!reverse">▲</span>
+            <span ng-show="reverse">▼</span>
+          </span>
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="report in reports | orderBy:order:reverse">
+      <td>{{ report.name }}</td>
+      <td>{{ report.read_at | date : 'dd/MM/yy HH:mm:ss' }}</td>
+      <td>{{ report.value }}</td>
+    </tr>
+  </tbody>
+</table>
