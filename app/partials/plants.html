@@ -1,11 +1,41 @@
 <h2>Plant List</h2>
 
-<ul>
-    <li ng-repeat="plant in plants">
-        {{plant.name}}
-    </li>
-    <li>
-        <input ng-model="newPlant.name" type="text" placeholder="Create a plant"/>
-        <button ng-click="createPlant()">Create</button>
-    </li>
-</ul>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th width="70%">Name</th>
+      <th width="30%">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="plant in plants">
+      <td>{{ plant.name }}</td>
+      <td>
+        <button class="btn btn-primary"
+                ui-sref="user.plant({id: plant.id})">
+          Reports
+        </button>
+        <button class="btn btn-danger"
+                ng-click="removePlant(plant)">
+          Remove
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="col-lg-10">
+          <input type="text"
+                 class="form-control"
+                 ng-model="newPlant.name"
+                 placeholder="Create a plant"/>
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-primary"
+                ng-click="createPlant()">
+          Create
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
