@@ -2,10 +2,8 @@ webgarden.controller('PlantCtrl', function ($scope, $state, $stateParams, plant,
   $scope.plant = plant;
   $scope.reports = reports;
 
-  console.log('$stateParams: %s', JSON.stringify($stateParams))
-
   $scope.order = $stateParams.order || 'datetime';
-  $scope.reverse = $stateParams.reverse || 'yes';
+  $scope.reverse = $stateParams.reverse || false;
 
   $scope.refresh = function () {
     $state.go('.', {
