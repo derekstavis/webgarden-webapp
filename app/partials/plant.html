@@ -38,7 +38,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="report in reports | orderBy:order:reverse">
+    <tr ng-repeat="report in reports | orderBy:order:reverse | limitTo:10">
       <td>{{ report.name }}</td>
       <td>{{ report.read_at | date : 'dd/MM/yy HH:mm:ss' }}</td>
       <td>{{ report.value }}</td>
