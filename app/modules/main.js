@@ -1,1 +1,1 @@
-webgarden = angular.module('webgarden', ['ui.router']);
+webgarden = angular.module('webgarden', ['ui.router', 'nvd3']);

@@ -18,7 +18,10 @@
   "homepage": "https://github.com/derekstavis/webgarden-webapp#readme",
   "dependencies": {
     "angular": "^1.4.8",
+    "angular-nvd3": "^1.0.4",
     "angular-ui-router": "^0.2.15",
+    "d3": "^3.5.10",
+    "nvd3": "^1.8.1",
     "ramda": "^0.18.0"
   },
   "devDependencies": {
