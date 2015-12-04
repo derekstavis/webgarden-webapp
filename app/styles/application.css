@@ -1,36 +1,71 @@
-html {
-    height: 100%;
-}
-
-body {
-    margin-top: 70px;
-    height: calc(100% - 90px);
+html body {
     background-image: url(../images/bonsai.jpg);
     background-position: center;
 }
 
-.lens {
-    background-color: rgba(255, 255, 255, 0.9);
-    height: 100%;
+md-toolbar.main-toolbar {
+  color: white;
+}
+
+md-item-content .md-button,
+md-item-content input {
+    margin: 0;
+    padding: 4px 16px;
+    text-transform: none;
+    font-weight: 500;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+md-item-content .md-button:first-child {
+    text-align: left;
 }
 
 .welcome h1, .welcome span {
     color: white;
+    line-height: 1.8em;
     padding: 8px;
     background-color: rgba(0, 0, 0, 0.7);
     display: inline;
 }
 
-.vertical-align {
-    display: flex;
-    align-items: center;
+.chart {
+    margin-bottom: 30px;
 }
 
-.pinned {
-    top: 50px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    height: auto;
+table.md-table {
+  margin-bottom: 16px;
+  max-width: 100%;
+  width: 100%;
+  border-spacing: 0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+table.md-table td,
+table.md-table th {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+table.md-table td {
+  vertical-align: top;
+}
+table.md-table td.description *:first-child {
+  margin-top: 0;
+}
+table.md-table td.description *:last-child {
+  margin-bottom: 0;
+}
+table.md-table tr:nth-child(odd) td {
+  background-color: #D9CDB9;
+}
+table.md-table tr:nth-child(even) td {
+  background-color: #B2A998;
+}
+table.md-table th {
+  background-color: #CC9C14;
+  color: white;
 }

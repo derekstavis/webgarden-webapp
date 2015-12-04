@@ -26,37 +26,41 @@ webgarden.config(function($stateProvider, $urlRouterProvider) {
       }
     })
     .state('user.plants', {
-      url: "/plants",
-      templateUrl: "partials/plants.html",
-      controller: 'PlantsCtrl',
+      url: "/plants/:id?{order:[a-z]}&{reverse:bool}",
+      views: {
+        'list': {
+          templateUrl: "partials/plants.html",
+          controller: 'PlantsCtrl'
+        },
+        'detail': {
+          templateUrl: "partials/plant.html",
+          controller: 'PlantCtrl'
+        }
+      },
       resolve: {
         plants: function (server, $http, $state, $rootScope) {
           return $http.get(server.baseUrl + '/plants')
             .then(R.prop('data'))
-            .catch(R.partial($state.go, ['login', undefined, undefined]));
-        }
-      }
-    })
-    .state('user.plant', {
-      url: "/plant/:id?{order:[a-z]}&{reverse:bool}",
-      templateUrl: "partials/plant.html",
-      controller: 'PlantCtrl',
-      resolve: {
+            .catch(R.partial(console.log, ['plants: %s']));
+        },
         plant: function (server, $http, $state, $stateParams) {
-          return $http.get(server.baseUrl + '/plants/' + $stateParams.id)
-            .then(R.prop('data'))
-            .catch(R.partial($state.go, ['login', undefined, undefined]));
+          if ($stateParams.id) {
+            return $http.get(server.baseUrl + '/plants/' + $stateParams.id)
+              .then(R.prop('data'))
+              .catch(R.partial(console.log, ['plant: %s']));
+          }
+
         },
         reports: function (server, $http, $state, $stateParams) {
+          if ($stateParams.id) {
             return $http.get(server.baseUrl + '/plants/' + $stateParams.id + '/reports')
             .then(R.prop('data'))
-            .catch(R.partial($state.go, ['login', undefined, undefined]));
+            .catch(R.partial(console.log, ['reports: %s']));
+          }
         }
       }
     })
     .state('logout', {
-      url: "/plants",
-      templateUrl: "partials/plants.html",
       controller: function (server, $http, $state, $rootScope) {
         $http.delete(server.baseUrl + '/session')
           .then(R.partial($state.go, ['login', undefined, undefined]))

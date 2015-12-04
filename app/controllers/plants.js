@@ -1,13 +1,22 @@
-webgarden.controller('PlantsCtrl', function ($scope, $state, server, $http, plants) {
-  console.log(plants);
+webgarden.controller('PlantsCtrl', function ($scope, $state, server, $http, plants, plant, $mdDialog) {
+  if (!plant) {
+    $state.go('user.plants', { id: plants[0].id });
+  }
+
   $scope.plants = plants;
   $scope.newPlant = {};
   $scope.createPlant = function () {
     $http.post(server.baseUrl + '/plants', $scope.newPlant)
       .then(R.partial($state.reload, ['user.plants']));
   };
-  $scope.removePlant = function (plant) {
-    $http.delete(server.baseUrl + '/plants/' + plant.id)
+  $scope.removePlant = function (plant, ev) {
+    $mdDialog.show(
+      $mdDialog.confirm()
+        .targetEvent(ev)
+        .title('Would you like to delete this plant?')
+        .ok('Remove Plant')
+        .cancel("Cancel"))
+      .then(R.partial($http.delete, [server.baseUrl + '/plants/' + plant.id]))
       .then(R.partial($state.reload, ['user.plants']));
   }
 });

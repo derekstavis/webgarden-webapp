@@ -28,10 +28,12 @@ webgarden.controller('PlantCtrl', function ($scope, $state, $stateParams, plant,
       xAxis: {
         tickFormat: R.pipe(
           function (d) { return new Date(d) },
-          d3.time.format('%d/%m/%y %H:%M'))
+          d3.time.format('%d/%m/%y %H:%M')),
+        tickPadding: 10
       },
       yAxis: {
-        tickFormat: d3.format('.3f')
+        tickFormat: d3.format('.3f'),
+        tickPadding: 10
       }
     }
   };
@@ -40,7 +42,8 @@ webgarden.controller('PlantCtrl', function ($scope, $state, $stateParams, plant,
     {
       key: "Moisture",
       values: reports,
-      area: true
+      area: true,
+      color: "14CC97"
     }
   ];
 

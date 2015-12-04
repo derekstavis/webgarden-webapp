@@ -1,24 +1,36 @@
-<div class="container pinned vertical-align">
-  <div class="col-md-8 welcome">
-    <h1>Welcome to Webgarden</h1>
-    <br>
-    <span>The easy way to monitor your garden</span>
-  </div>
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title"><strong>Sign In </strong></h3></div>
-      <div class="panel-body">
-       <form role="form">
-        <div class="form-group">
-          <label for="user">Username</label>
-          <input id="user" type="text" ng-model="user.user" class="form-control" placeholder="Enter you username">
-        </div>
-        <div class="form-group">
-          <label for="password">Password
-          <input id="password" type="password" ng-model="user.pass" class="form-control" placeholder="Password">
-        </div>
-        <button ng-click="login()" class="btn btn-sm btn-default">Sign in</button>
-      </form>
+<div layout="row" layout-fill layout-align="center center">
+  <div flex="70" layout="row">
+
+    <div layout="column" flex="auto" layout-align="center start" class="welcome">
+      <div>
+        <h1>Welcome to Webgarden</h1>
+        <br>
+        <span>The easy way to monitor your garden</span>
+      </div>
     </div>
+
+    <md-whiteframe flex="30" layout="column" class="md-whiteframe-z1">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2 class="md-flex">Sign In</h2>
+        </div>
+      </md-toolbar>
+      <md-content layout-padding>
+        <md-input-container>
+          <label>Username</label>
+          <input ng-model="user.user">
+        </md-input-container>
+        <md-input-container>
+          <label>Password</label>
+          <input ng-model="user.pass" type="password">
+        </md-input-container>
+      </md-content>
+      <md-content flex layout="column" layout-fill>
+        <md-button ng-click="login()" flex="100">
+          Login
+        </md-button>
+      </md-content>
+    </md-whiteframe>
+
   </div>
 </div>

@@ -1,26 +1,25 @@
-<div class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand">Webgarden</a>
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+<div layout="column" layout-fill>
+  <md-toolbar class="main-toolbar">
+    <div class="md-toolbar-tools">
+      <span>Webgarden</span>
+      <span flex></span>
+      <a class="md-button">
+        Logged as {{ user.name }}
+      </a>
+      <a ui-sref="logout" class="md-button">
+        Log me out!
+      </a>
     </div>
-    <div class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        <li>
-          <a ui-sref="user.plants">My Plants</a>
-        </li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><em>Logged as {{ user.name }}</em></a></li>
-        <li><a ui-sref="logout">Log me out!</a></li>
-      </ul>
+  </md-toolbar>
+  <div layout="row" flex class="content-wrapper">
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2"
+                md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+      <div ui-view="list"></div>
+    </md-sidenav>
+    <div layout="column" flex class="content-wrapper" id="primary-col">
+        <md-content layout="column" flex class="md-padding">
+          <div ui-view="detail"></div>
+        </md-content>
     </div>
   </div>
 </div>
-<div class="container lens" ui-view>
-</ui-view>

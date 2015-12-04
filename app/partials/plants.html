@@ -1,41 +1,20 @@
-<h2>Plant List</h2>
-
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th width="70%">Name</th>
-      <th width="30%">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="plant in plants">
-      <td>{{ plant.name }}</td>
-      <td>
-        <button class="btn btn-primary"
-                ui-sref="user.plant({id: plant.id})">
-          Reports
-        </button>
-        <button class="btn btn-danger"
-                ng-click="removePlant(plant)">
-          Remove
-        </button>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="col-lg-10">
-          <input type="text"
-                 class="form-control"
-                 ng-model="newPlant.name"
-                 placeholder="Create a plant"/>
-        </div>
-      </td>
-      <td>
-        <button class="btn btn-primary"
-                ng-click="createPlant()">
-          Create
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<md-list>
+  <md-item ng-repeat="plant in plants">
+    <md-item-content layout="row">
+      <md-button ui-sref="user.plants({id: plant.id})" flex>
+        {{ plant.name }}
+      </md-button>
+      <md-button ng-click="removePlant(plant, $event)" flex="5" class="md-warn">
+        Remove
+      </md-button>
+    </md-item-content>
+  </md-item>
+  <md-item>
+    <md-item-content layout="row">
+      <input ng-model="newPlant.name" type="text"
+             placeholder="Create a plant" flex>
+      <md-button ng-click="createPlant()" flex="5">
+      Create
+    </md-button>
+  </md-item>
+</md-list>

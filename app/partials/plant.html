@@ -1,47 +1,51 @@
-<h2>
-  {{plant.name}} Reports
-  <small>
-    <button ng-click="refresh()" class="btn btn-sm btn-success pull-right">
+<div ng-if="plant" layout="column" layout-padding>
+
+  <div layout="row" layout-align="start center">
+    <h2 class="md-display-1" flex="auto">
+      {{plant.name}} Reports
+    </h2>
+    <md-button ng-click="refresh()" class="md-primary">
       Refresh
-    </button>
-  </small>
-  </h2>
+    </md-button>
+  </div>
 
-<div class="container">
-  <nvd3 options="options" data="chartData"></nvd3>
+  <md-content class="chart">
+    <nvd3 options="options" data="chartData"></nvd3>
+  </md-content>
+
+  <md-content>
+    <table class="md-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>
+            <a ng-click="order='datetime'; reverse = !reverse">
+              Date/Time
+              <span ng-show="order == 'datetime'">
+                <span ng-show="!reverse">▲</span>
+                <span ng-show="reverse">▼</span>
+              </span>
+            </a>
+          </th>
+          <th>
+            <a ng-click="order='value'; reverse = !reverse">
+              Value
+              <span ng-show="order == 'value'">
+                <span ng-show="!reverse">▲</span>
+                <span ng-show="reverse">▼</span>
+              </span>
+            </a>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="report in reports | orderBy:order:reverse | limitTo:10">
+          <td>{{ report.name }}</td>
+          <td>{{ report.read_at | date : 'dd/MM/yy HH:mm:ss' }}</td>
+          <td>{{ report.value | number:3 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </md-content>
+
 </div>
-
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        <a ng-click="order='datetime'; reverse = !reverse">
-          Date/Time
-          <span ng-show="order == 'datetime'">
-            <span ng-show="!reverse">▲</span>
-            <span ng-show="reverse">▼</span>
-          </span>
-        </a>
-      </th>
-      <th>
-        <a ng-click="order='value'; reverse = !reverse">
-          Value
-          <span ng-show="order == 'value'">
-            <span ng-show="!reverse">▲</span>
-            <span ng-show="reverse">▼</span>
-          </span>
-        </a>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="report in reports | orderBy:order:reverse | limitTo:10">
-      <td>{{ report.name }}</td>
-      <td>{{ report.read_at | date : 'dd/MM/yy HH:mm:ss' }}</td>
-      <td>{{ report.value }}</td>
-    </tr>
-  </tbody>
-</table>
