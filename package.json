@@ -25,7 +25,8 @@
     "angular-ui-router": "^0.2.15",
     "d3": "^3.5.10",
     "nvd3": "^1.8.1",
-    "ramda": "^0.18.0"
+    "ramda": "^0.18.0",
+    "roboto-fontface": "^0.4.2"
   },
   "devDependencies": {
     "http-server": "^0.8.5"
