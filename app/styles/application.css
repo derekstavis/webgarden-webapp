@@ -23,6 +23,10 @@ md-item-content .md-button:first-child {
     text-align: left;
 }
 
+md-input-container.button {
+  padding-bottom: 0;
+}
+
 .welcome h1, .welcome span {
     color: white;
     line-height: 1.8em;
