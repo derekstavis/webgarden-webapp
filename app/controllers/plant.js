@@ -5,10 +5,10 @@ webgarden.controller('PlantCtrl', function ($scope, $state, $stateParams, plant,
   $scope.order = $stateParams.order || 'datetime';
   $scope.reverse = $stateParams.reverse || false;
 
-  $scope.refresh = function () {
+  $scope.refresh = function (order, reverse) {
     $state.go('.', {
-      order: $scope.order,
-      reverse: $scope.reverse
+      order: order,
+      reverse: reverse
     }, { reload: true });
   };
 
