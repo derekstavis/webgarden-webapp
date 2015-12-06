@@ -16,16 +16,17 @@
         </div>
       </md-toolbar>
       <md-content layout-padding>
+        <form name="loginForm" ng-submit="login()">
         <md-input-container>
           <label>Username</label>
-          <input ng-model="user.user">
+          <input required ng-model="user.user">
         </md-input-container>
         <md-input-container>
           <label>Password</label>
-          <input ng-model="user.pass" type="password">
+          <input required ng-model="user.pass" type="password">
         </md-input-container>
         <md-input-container class="button">
-          <md-button ng-click="login()" flex="100" class="md-raised md-primary">
+          <md-button flex="100" class="md-raised md-primary">
             Login
           </md-button>
         </md-input-container>
