@@ -1,17 +1,13 @@
 webgarden.controller('LoginCtrl', function (server, $scope, $state, $http, user) {
   $scope.user = {};
 
-  var gotoPlants = R.partial($state.go, ['user.plants', undefined, undefined]);
+  function gotoPlants() {
+    $state.go('user.plants');
+  }
 
   $scope.login = function () {
     $http.post(server.baseUrl + '/session', $scope.user)
       .then(R.prop('data'))
-      .then(gotoPlants)
-      .catch(console.log);
+      .then(gotoPlants);
   }
-
-  if (user) {
-    gotoPlants();
-  }
-
 });

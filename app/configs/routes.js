@@ -2,10 +2,11 @@ webgarden.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("/login");
 
-  function resolveUser (server, $http, $state, $rootScope) {
-    return $http.get(server.baseUrl + '/session')
-      .then(R.prop('data'))
-      .catch(R.empty);
+  function requestErrorHandler(resource) {
+    return function (error) {
+      console.log(resource + ': %s', error);
+      throw error;
+    };
   }
 
   $stateProvider
@@ -14,7 +15,11 @@ webgarden.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: "partials/login.html",
       controller: 'LoginCtrl',
       resolve: {
-        user: resolveUser
+        user: function resolveUser(server, $http, $state, $rootScope) {
+          return $http.get(server.baseUrl + '/session')
+            .then(function () { $state.go('user.plants') })
+            .catch(R.empty);
+        }
       }
     })
     .state('user', {
@@ -22,7 +27,11 @@ webgarden.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'partials/user.html',
       controller: 'UserCtrl',
       resolve: {
-        user: resolveUser
+        user: function resolveUser(server, $http, $state, $rootScope) {
+          return $http.get(server.baseUrl + '/session')
+            .then(R.prop('data'))
+            .catch(function () { $state.go('login') });
+        }
       }
     })
     .state('user.plants', {
@@ -41,13 +50,13 @@ webgarden.config(function($stateProvider, $urlRouterProvider) {
         plants: function (server, $http, $state, $rootScope) {
           return $http.get(server.baseUrl + '/plants')
             .then(R.prop('data'))
-            .catch(R.partial(console.log, ['plants: %s']));
+            .catch(requestErrorHandler('plants'));
         },
         plant: function (server, $http, $state, $stateParams) {
           if ($stateParams.id) {
             return $http.get(server.baseUrl + '/plants/' + $stateParams.id)
               .then(R.prop('data'))
-              .catch(R.partial(console.log, ['plant: %s']));
+              .catch(requestErrorHandler('plant'));
           }
 
         },
@@ -55,7 +64,7 @@ webgarden.config(function($stateProvider, $urlRouterProvider) {
           if ($stateParams.id) {
             return $http.get(server.baseUrl + '/plants/' + $stateParams.id + '/reports')
             .then(R.prop('data'))
-            .catch(R.partial(console.log, ['reports: %s']));
+            .catch(requestErrorHandler('reports'));
           }
         }
       }
@@ -63,7 +72,7 @@ webgarden.config(function($stateProvider, $urlRouterProvider) {
     .state('logout', {
       controller: function (server, $http, $state, $rootScope) {
         $http.delete(server.baseUrl + '/session')
-          .then(R.partial($state.go, ['login', undefined, undefined]))
+          .then(function () { $state.go('login') })
           .then(function () { delete $rootScope.user });
       }
     });
