@@ -43,7 +43,7 @@ webgarden.controller('PlantCtrl', function ($scope, $state, $stateParams, plant,
       key: "Moisture",
       values: reports,
       area: true,
-      color: "14CC97"
+      color: "#14CC97"
     }
   ];
 
