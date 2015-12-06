@@ -18,7 +18,12 @@
     </md-sidenav>
     <div layout="column" flex class="content-wrapper" id="primary-col">
         <md-content layout="column" flex class="md-padding">
-          <div ui-view="detail"></div>
+          <div ng-if="loading" flex layout="column" layout-fill
+               layout-align="center center" class="fade">
+            <md-progress-circular md-mode="indeterminate" md-diameter="48">
+            </md-progress-circular>
+          </div>
+          <div ng-if="!loading" ui-view="detail" class="fade"></div>
         </md-content>
     </div>
   </div>
