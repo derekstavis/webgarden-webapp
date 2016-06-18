@@ -1,5 +1,5 @@
 webgarden.controller('PlantsCtrl', function ($scope, $state, server, $http, plants, plant, $mdDialog) {
-  if (!plant) {
+  if (!plant && plants.length > 0) {
     $state.go('user.plants', { id: plants[0].id });
   }
 
