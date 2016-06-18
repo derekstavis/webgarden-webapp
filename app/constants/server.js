@@ -1,3 +1,3 @@
 webgarden.constant('server', {
-  baseUrl: 'http://127.0.0.1:3000/v1'
+  baseUrl: 'http://api.localhost:9292/v1'
 });
